@@ -5,15 +5,11 @@
 package br.edu.ifsul.cc.lpoo.cs.model;
 
 import java.io.Serializable;
-import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
@@ -22,23 +18,24 @@ import javax.persistence.Table;
  * @author huriel
  */
 @Entity
-@Table(name = "tb_mapa")
-public class Mapa implements Serializable {
+@Table(name = "tb_local")
+public class Local implements Serializable {
     
     @Id
-    @SequenceGenerator(name = "seq_mapa", sequenceName = "seq_mapa_id", allocationSize = 1)
-    @GeneratedValue(generator = "seq_mapa", strategy = GenerationType.SEQUENCE)
+    @SequenceGenerator(name = "seq_local", sequenceName = "seq_local_id", allocationSize = 1)
+    @GeneratedValue(generator = "seq_local", strategy = GenerationType.SEQUENCE)
     private Integer id;
     
-    @Column(nullable = false)
+    @Column(nullable = false, length = 200)
     private String nome;
     
-    @ManyToMany
-    @JoinTable(name = "tb_mapa_local", joinColumns = {@JoinColumn(name = "mapa_id")}, //agregacao, vai gerar uma tabela associativa.
-                                       inverseJoinColumns = {@JoinColumn(name = "local_id")})
-    private List<Local> locais;
+    @Column(nullable = false)
+    private String latitude;
     
-    public Mapa() {
+    @Column(nullable = false)
+    private String longitude;
+    
+    public Local() {
         
     }
 
@@ -71,16 +68,30 @@ public class Mapa implements Serializable {
     }
 
     /**
-     * @return the locais
+     * @return the latitude
      */
-    public List<Local> getLocais() {
-        return locais;
+    public String getLatitude() {
+        return latitude;
     }
 
     /**
-     * @param locais the locais to set
+     * @param latitude the latitude to set
      */
-    public void setLocais(List<Local> locais) {
-        this.locais = locais;
+    public void setLatitude(String latitude) {
+        this.latitude = latitude;
+    }
+
+    /**
+     * @return the longitude
+     */
+    public String getLongitude() {
+        return longitude;
+    }
+
+    /**
+     * @param longitude the longitude to set
+     */
+    public void setLongitude(String longitude) {
+        this.longitude = longitude;
     }
 }

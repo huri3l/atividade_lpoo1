@@ -22,24 +22,27 @@ import javax.persistence.Table;
  * @author huriel
  */
 @Entity
-@Table(name = "tb_mapa")
-public class Mapa implements Serializable {
-    
+@Table(name = "tb_objetivo")
+public class Objetivo implements Serializable {
+
     @Id
-    @SequenceGenerator(name = "seq_mapa", sequenceName = "seq_mapa_id", allocationSize = 1)
-    @GeneratedValue(generator = "seq_mapa", strategy = GenerationType.SEQUENCE)
+    @SequenceGenerator(name = "seq_objetivo", sequenceName = "seq_objetivo_id", allocationSize = 1)
+    @GeneratedValue(generator = "seq_objetivo", strategy = GenerationType.SEQUENCE)
     private Integer id;
     
     @Column(nullable = false)
-    private String nome;
+    private String descricao;
     
+    @Column(nullable = false)
+    private Integer pontos;
+
     @ManyToMany
-    @JoinTable(name = "tb_mapa_local", joinColumns = {@JoinColumn(name = "mapa_id")}, //agregacao, vai gerar uma tabela associativa.
-                                       inverseJoinColumns = {@JoinColumn(name = "local_id")})
+    @JoinTable(name = "tb_jogador_patente", joinColumns = {@JoinColumn(name = "jogador_nickname")}, //agregacao, vai gerar uma tabela associativa.
+                                       inverseJoinColumns = {@JoinColumn(name = "patente_id")})
     private List<Local> locais;
-    
-    public Mapa() {
-        
+
+    public Objetivo() {
+
     }
 
     /**
@@ -57,17 +60,31 @@ public class Mapa implements Serializable {
     }
 
     /**
-     * @return the nome
+     * @return the descricao
      */
-    public String getNome() {
-        return nome;
+    public String getDescricao() {
+        return descricao;
     }
 
     /**
-     * @param nome the nome to set
+     * @param descricao the descricao to set
      */
-    public void setNome(String nome) {
-        this.nome = nome;
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
+    }
+
+    /**
+     * @return the pontos
+     */
+    public Integer getPontos() {
+        return pontos;
+    }
+
+    /**
+     * @param pontos the pontos to set
+     */
+    public void setPontos(Integer pontos) {
+        this.pontos = pontos;
     }
 
     /**
