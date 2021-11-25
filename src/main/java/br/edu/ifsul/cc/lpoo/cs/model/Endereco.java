@@ -44,10 +44,8 @@ public class Endereco implements Serializable{
     /**
      * @param id the id to set
      */
-    public void setId(Integer id) {
-                    
+    public void setId(Integer id) {          
         this.id = id;        
-        
     }
 
     /**
@@ -77,8 +75,4 @@ public class Endereco implements Serializable{
     public void setComplemento(String complemento) {
         this.complemento = complemento;
     }
-    
-    
-    
-    
 }
